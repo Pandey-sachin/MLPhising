@@ -35,7 +35,7 @@ scipy==1.10.1               # Latest stable release
 six==1.16.0                 # This is a valid version
 SQLAlchemy==2.0.21          # Latest stable release
 threadpoolctl==3.2.0        # Latest stable release
-typing_extensions==4.8.1    # Latest stable release
+typing_extensions==4.12.2    # Latest stable release
 tzdata==2023.3              # Latest stable release
 tzlocal==5.1                # Latest stable release
 urllib3==2.0.7              # Latest stable release
