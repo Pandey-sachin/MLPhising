@@ -31,7 +31,7 @@ python-dateutil==2.8.2      # Latest stable release
 pytz==2023.3                # Latest stable release
 requests==2.31.0            # This is a valid version
 scikit-learn==1.3.0         # Latest stable release
-scipy==1.11.3               # Latest stable release
+scipy==1.10.1               # Latest stable release
 six==1.16.0                 # This is a valid version
 SQLAlchemy==2.0.21          # Latest stable release
 threadpoolctl==3.2.0        # Latest stable release
