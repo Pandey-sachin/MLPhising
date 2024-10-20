@@ -21,7 +21,7 @@ kiwisolver==1.4.7
 kneed==0.8.5
 MarkupSafe==2.1.5
 matplotlib==3.7.5           # Latest stable release
-numpy==1.26.0               # Latest stable release
+numpy==1.24.4               # Latest stable release
 packaging==24.1             # This is a valid version
 pandas==2.1.1               # Latest stable release
 pillow==10.0.1              # Latest stable release
