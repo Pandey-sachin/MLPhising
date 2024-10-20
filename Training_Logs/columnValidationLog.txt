@@ -1,0 +1,9 @@
+2024-10-20/14:19:51		Column Length Validation Started!!
+2024-10-20/14:19:51		Column Length Validation Completed!!
+2024-10-20/14:27:22		Column Length Validation Started!!
+2024-10-20/14:27:22		Column Length Validation Completed!!
+2024-10-20/14:30:00		Column Length Validation Started!!
+2024-10-20/14:30:00		Column Length Validation Completed!!
+2024-10-20/16:32:54		Column Length Validation Started!!
+2024-10-20/16:32:54		Invalid Column Length for the file!! File moved to Bad Raw Folder :: phising_08012020_120000.csv
+2024-10-20/16:32:54		Column Length Validation Completed!!

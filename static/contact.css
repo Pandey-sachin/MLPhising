@@ -1,0 +1,132 @@
+body {
+    background-image: url('/static/images/bgg3.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    
+    color: #ffffff;
+    
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.horizontal-list {
+    list-style: none;
+    font-family: default;
+}
+
+.horizontal-list li {
+    display: inline-block;
+    margin: 0px 25px 25px 0px;
+}
+
+.horizontal-list li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.5s;
+    font-size: 30px;
+}
+
+.horizontal-list li a:hover {
+    color: grey;
+    text-decoration: underline;
+}
+
+h1 {
+    margin: 0;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+section {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #333;
+    border-radius: 5px;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+}
+
+h2 {
+    color: #0088cc;
+    margin-top: 0;
+}
+
+form {
+    display: grid;
+    gap: 10px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+        padding: 10px;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 4px;
+    }
+
+input[type="submit"] {
+    background-color: #170a4d;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #2e07df;
+}
+
+footer {
+    margin-top: 30px;
+    background-color: #110652;
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+}
+#response-message{
+
+    display: none;
+}
+.message {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    display: none;
+
+  }
+  
+  .error-message {
+    color: white;
+    background-color: #a94442;
+    margin-top: 20px;
+    padding: 10px;
+  }
+  

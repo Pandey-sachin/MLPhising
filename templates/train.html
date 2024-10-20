@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/train.css">
+    <title>Train Phishing Classifier</title>
+</head>
+
+<body>
+    <header>
+        <div class="container" id="body-header">
+            <nav>
+                <ul class="horizontal-list">
+                    <li><a href="{{url_for('home')}}">Home</a></li>
+                    <li><a href="{{url_for('train')}}">Train</a></li>
+                    <li><a href="{{url_for('predict')}}">Predict</a></li>
+                    <li><a href="{{url_for('contact')}}">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+        <h1>Train Phishing Classifier</h1>
+    </header>
+
+    <section>
+        <form action="/trained/" method="POST" enctype="multipart/form-data" onsubmit="submitForm(event)">
+            <label for="file">Select Training Batch Files:</label>
+            <input type="file" id="file" name="file" multiple required>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="loader"></div>
+        <div id="message"></div>
+    </section>
+
+    <script>
+        function submitForm(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            var files = document.getElementById('file').files;
+
+            // Create a FormData object to wrap the files
+            var formData = new FormData();
+            for (var i = 0; i < files.length; i++) {
+                formData.append('files', files[i]);
+            }
+
+            // Show the loader
+            var loader = document.createElement('div');
+            loader.id = 'loader';
+            loader.classList.add('loader');
+            document.body.appendChild(loader);
+
+            // Disable the submit button while the request is being processed
+            var submitButton = document.querySelector('button[type="submit"]');
+            submitButton.disabled = true;
+
+            // Send the FormData object to the Flask endpoint using Fetch API
+            fetch('/trained/', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Hide the loader
+                    loader.parentNode.removeChild(loader);
+
+                    // Enable the submit button
+                    submitButton.disabled = false;
+
+                    if (data.message === 'Model trained successfully') {
+                        // Display the success message
+                        var message = document.getElementById('message');
+                        message.style.display = 'block';
+                        message.textContent = 'Training Successful';
+                    } else {
+                        // Display the error message
+                        console.log('Error: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    // Hide the loader
+                    loader.parentNode.removeChild(loader);
+
+                    // Enable the submit button
+                    submitButton.disabled = false;
+
+                    // Handle the error
+                    console.log('Error: ' + error);
+                });
+        }
+    </script>
+</body>
+
+</html>

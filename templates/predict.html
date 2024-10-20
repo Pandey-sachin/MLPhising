@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/train.css">
+    
+    <title>Predict Phishing</title>
+</head>
+
+<body>
+    <div class="container" id="body-header">
+        <nav>
+            <ul class="horizontal-list">
+                <li><a href="{{url_for('home')}}">Home</a></li>
+                <li><a href="{{url_for('train')}}">Train</a></li>
+                <li><a href="{{url_for('predict')}}">Predict</a></li>
+                <li><a href="{{url_for('contact')}}">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+    <header>
+        <h1>Predict Phishing</h1>
+    </header>
+
+    <section>
+        <form id="predict" method="POST">
+            <label for="file">Prediction Batch Files:</label>
+            <input type="file" id="file" name="file" multiple>
+            <br>
+            <!-- <div class="or-statement">OR</div> -->
+            <!-- <br> -->
+            <!-- <label for="url">Website Link:</label>
+            <input type="url" id="websiteLink" name="websiteLink" placeholder="Enter website link...">
+            <br> -->
+            <button type="submit" onclick="submitForm(event)">Submit</button>
+        </form>
+        
+        <button id="download" class="download-button">Download Results</button>
+
+        <div id="loader" class="loader" ></div>
+    </section>
+
+    <div id="prediction-result" class="prediction-result" style="display: none;"></div>
+    <!-- <a id="download" style="display:none;">Download Predictions</a> -->
+    
+
+
+    <script src="/static/predict.js"></script>
+
+    
+
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+# Ignore Python virtual environment
+venv/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.csv
+*.sav
+# Ignore database files
+*.db
+
+# Ignore logs
+*.log
+
+
+# Ignore environment-specific files
+.env
+
+# Ignore compiled files
+*.o
+*.so
+
+# Ignore temporary files
+*.tmp
+*.swp
+*.swo
+
+# Ignore code runner temp files
+tempCodeRunnerFile.py
+
+
+
+
+
+
+
+

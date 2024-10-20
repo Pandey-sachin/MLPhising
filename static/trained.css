@@ -1,0 +1,44 @@
+body {
+    background-image: url('/static/images/bgg3.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    color: #fff;
+}
+
+header {
+    text-align: center;
+    
+}
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.horizontal-list{
+    list-style: none;
+    
+ 
+}
+.horizontal-list li{
+    display: inline-block;
+    margin: 0px 25px 25px 0px ;
+    
+     
+}
+.horizontal-list li a{
+    color: white;
+    text-decoration: none;
+    transition: color 0.5s;
+    font-size: 30px;
+    
+}
+.horizontal-list li a:hover{
+    color: grey;
+    text-decoration: underline;
+}
+
+

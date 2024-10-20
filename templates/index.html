@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Phishing Classification</title>
+</head>
+
+<body>
+    <header id="body-header">
+        <div class="container">
+
+            <nav>
+                <img src="/static/images/phi2.png" class="logo">
+                <ul class="horizontal-list ">
+                    <li><a href="{{url_for('home')}}">Home</a></li>
+                    <li><a href="{{url_for('train')}}">Train</a></li>
+                    <li><a href="{{url_for('predict')}}">Predict</a></li>
+                    <li><a href="{{url_for('contact')}}">Contact</a></li>
+                </ul>
+            </nav>
+
+
+        </div>
+        <div class="mainheading">
+            <h1>Phishing Classification</h1>
+        </div>
+
+        </div>
+    </header>
+    <section>
+        <h2>Phishing Classification</h2>
+        <p>Phishing classification is the process of determining whether a website or URL is a phishing website or not.
+            It involves analyzing various parameters and features of the website to make an informed judgment.</p>
+        <p>By using machine learning algorithms and techniques, we can train models to classify websites as either
+            phishing or legitimate based on historical data. These models can then be used to predict the classification
+            of new websites and help users identify potential phishing attempts.</p>
+    </section>
+    <section class = "arch">
+        <h2>Architecture</h2>
+        <img src="/static/images/arch.png" >
+    </section>
+    <section>
+
+        <h1>How It Works</h1>
+        <h2>Data Description</h2>
+        <p><strong>Data Description:</strong> The dataset describes the different parameters used to judge
+            whether a website is a phishing website.</p>
+        <p><strong>Data Description:</strong></p>
+        <ul>
+            <li><strong>having_IP_Address:</strong> [-1, 1]</li>
+            <li><strong>URL_Length:</strong> [1, 0, -1]</li>
+            <li><strong>Shortining_Service:</strong> [1, -1]</li>
+            <li><strong>having_At_Symbol:</strong> [1, -1]</li>
+            <li><strong>double_slash_redirecting:</strong> [-1, 1]</li>
+            <li><strong>Prefix_Suffix:</strong> [-1, 1]</li>
+            <li><strong>having_Sub_Domain:</strong> [-1, 0, 1]</li>
+            <li><strong>SSLfinal_State:</strong> [-1, 1, 0]</li>
+            <li><strong>Domain_registeration_length:</strong> [-1, 1]</li>
+            <li><strong>Favicon:</strong> [1, -1]</li>
+            <li><strong>port:</strong> [1, -1]</li>
+            <li><strong>HTTPS_token:</strong> [-1, 1]</li>
+            <li><strong>Request_URL:</strong> [1, -1]</li>
+            <li><strong>URL_of_Anchor:</strong> [-1, 0, 1]</li>
+            <li><strong>Links_in_tags:</strong> [1, -1, 0]</li>
+            <li><strong>SFH:</strong> [-1, 1, 0]</li>
+            <li><strong>Submitting_to_email:</strong> [-1, 1]</li>
+            <li><strong>Abnormal_URL:</strong> [-1, 1]</li>
+            <li><strong>Redirect:</strong> [0, 1]</li>
+            <li><strong>on_mouseover:</strong> [1, -1]</li>
+            <li><strong>RightClick:</strong> [1, -1]</li>
+            <li><strong>popUpWidnow:</strong> [1, -1]</li>
+            <li><strong>Iframe:</strong> [1, -1]</li>
+            <li><strong>age_of_domain:</strong> [-1, 1]</li>
+            <li><strong>DNSRecord:</strong> [-1, 1]</li>
+            <li><strong>web_traffic:</strong> [-1, 0, 1]</li>
+            <li><strong>Page_Rank:</strong> [-1, 1]</li>
+            <li><strong>Google_Index:</strong> [1, -1]</li>
+            <li><strong>Links_pointing_to_page:</strong> [1, 0, -1]</li>
+            <li><strong>Statistical_report:</strong> [-1, 1]</li>
+            <li><strong>Result:</strong> [-1, 1]</li>
+        </ul>
+        <p>Apart from training files, we also require a "schema" file from the client, which contains all
+            the relevant information about the training files such as:</p>
+        <ul>
+            <li>Name of the files</li>
+            <li>Length of Date value in FileName</li>
+            <li>Length of Time value in FileName</li>
+            <li>Number of Columns</li>
+            <li>Name of the Columns</li>
+            <li>Data types of the Columns</li>
+        </ul>
+        <h3>Data Validation</h3>
+        <p>In this step, we perform different sets of validation on the given set of training files.</p>
+        <ol>
+            <li><strong>Name Validation:</strong> We validate the name of the files based on the given name
+                in the schema file. We have created a regex pattern as per the name given in the schema file
+                to use for validation. After validating the pattern in the name, we check for the length of
+                the date in the file name as well as the length of the time in the file name. If all the
+                values are as per the requirements, we move such files to the "Good_Data_Folder"; otherwise,
+                we move such files to the "Bad_Data_Folder".</li>
+            <li><strong>Number of Columns:</strong> We validate the number of columns present in the files,
+                and if it doesn't match the value given in the schema file, then the file is moved to the
+                "Bad_Data_Folder".</li>
+            <li><strong>Name of Columns:</strong> The name of the columns is validated and should be the
+                same as given in the schema file. If not, then the file is moved to the "Bad_Data_Folder".
+            </li>
+            <li><strong>Data Types of Columns:</strong> The data types of columns are given in the schema
+                file. This is validated when we insert the files into the database. If the data type is
+                wrong, then the file is moved to the "Bad_Data_Folder".</li>
+            <li><strong>Null Values in Columns:</strong> If any of the columns in a file have all the values
+                as NULL or missing, we discard such a file and move it to the "Bad_Data_Folder".</li>
+        </ol>
+        <h3>Data Insertion in Database</h3>
+        <ol>
+            <li><strong>Database Creation and Connection:</strong> Create a database with the given name
+                passed. If the database is already created, open the connection to the database.</li>
+            <li><strong>Table Creation in the Database:</strong> Create a table named "Good_Data" in the
+                database for inserting the files in the "Good_Data_Folder" based on the given column names
+                and data types in the schema file. If the table is already present, then the new table is
+                not created, and new files are inserted into the already present table as we want training
+                to be done on both new and old training files.</li>
+            <li><strong>Insertion of Files in the Table:</strong> Insert all the files in the
+                "Good_Data_Folder" into the above-created table. If any file has an invalid data type in any
+                of the columns, the file is not loaded in the table and is moved to the "Bad_Data_Folder".
+            </li>
+        </ol>
+        <h2>Model Training</h2>
+        <ol>
+            <li><strong>Data Export from Database:</strong> Export the data from the stored database as a
+                CSV file to be used for model training.</li>
+            <li><strong>Data Preprocessing:</strong>
+                <ul>
+                    <li>a) Replace the invalid values with numpy "nan" so we can use an imputer on such
+                        values.</li>
+                    <li>b) Check for null values in the columns. If present, impute the null values using
+                        the KNN imputer.</li>
+                </ul>
+            </li>
+            <li><strong>Clustering:</strong> Use the KMeans algorithm to create clusters in the preprocessed
+                data. The optimum number of clusters is selected by plotting the elbow plot, and the
+                "KneeLocator" function is used for the dynamic selection of the number of clusters. The idea
+                behind clustering is to implement different algorithms to train data in different clusters.
+                Train the KMeans model over the preprocessed data and save the model for further use in
+                prediction.</li>
+            <li><strong>Model Selection:</strong> After creating clusters, find the best model for each
+                cluster. Use two algorithms, "SVM" and "XGBoost," for each cluster. Pass both the algorithms
+                with the best parameters derived from GridSearch. Calculate the AUC scores for both models
+                and select the model with the best score. Similarly, select the model for each cluster. Save
+                all the models for every cluster for use in prediction.</li>
+        </ol>
+        <h2>Prediction Data Description</h2>
+        <p>The client will send the data in multiple sets of files in batches to a given location. The data
+            will contain predictors in 30 columns.</p>
+        <p>Apart from the prediction files, we also require a "schema" file from the client, which contains
+            all the relevant information about the training files such as:</p>
+        <ul>
+            <li>Name of the files</li>
+            <li>Length of the Date value in the FileName</li>
+            <li>Length of the Time value in the FileName</li>
+            <li>Number of Columns</li>
+            <li>Name of the Columns</li>
+            <li>Data types of the Columns</li>
+        </ul>
+        <h3>Data Validation</h3>
+        <p>In this step, we perform different sets of validation on the given set of training files.</p>
+        <ol>
+            <li><strong>Name Validation:</strong> We validate the name of the files based on the given name
+                in the schema file. We have created a regex pattern as per the name given in the schema file
+                to use for validation. After validating the pattern in the name, we check for the length of
+                the date in the file name as well as the length of the time in the file name. If all the
+                values are as per the requirements, we move such files to the "Good_Data_Folder"; otherwise,
+                we move such files to the "Bad_Data_Folder".</li>
+            <li><strong>Number of Columns:</strong> We validate the number of columns present in the files,
+                and if it doesn't match the value given in the schema file, then the file is moved to the
+                "Bad_Data_Folder".</li>
+            <li><strong>Name of Columns:</strong> The name of the columns is validated and should be the
+                same as given in the schema file. If not, then the file is moved to the "Bad_Data_Folder".
+            </li>
+            <li><strong>Data Types of Columns:</strong> The data types of columns are given in the schema
+                file. This is validated when we insert the files into the database. If the data type is
+                wrong, then the file is moved to the "Bad_Data_Folder".</li>
+            <li><strong>Null Values in Columns:</strong> If any of the columns in a file have all the values
+                as NULL or missing, we discard such a file and move it to the "Bad_Data_Folder".</li>
+        </ol>
+        <h3>Data Insertion in Database</h3>
+        <ol>
+            <li><strong>Database Creation and Connection:</strong> Create a database with the given name
+                passed. If the database is already created, open the connection to the database.</li>
+            <li><strong>Table Creation in the Database:</strong> Create a table named "Good_Data" in the
+                database for inserting the files in the "Good_Data_Folder" based on the given column names
+                and data types in the schema file. If the table is already present, then the new table is
+                not created, and new files are inserted into the already present table as we want training
+                to be done on both new and old training files.</li>
+            <li><strong>Insertion of Files in the Table:</strong> Insert all the files in the
+                "Good_Data_Folder" into the above-created table. If any file has an invalid data type in any
+                of the columns, the file is not loaded in the table and is moved to the "Bad_Data_Folder".
+            </li>
+        </ol>
+        <h2>Model Training and Prediction</h2>
+        <ol>
+            <li><strong>Load the Model:</strong> Load the model from the file for each cluster to predict
+                the probability of data belonging to that cluster.</li>
+            <li><strong>Data Preprocessing:</strong>
+                <ul>
+                    <li>a) Replace the invalid values with numpy "nan" so we can use an imputer on such
+                        values.</li>
+                    <li>b) Check for null values in the columns. If present, impute the null values using
+                        the KNN imputer.</li>
+                </ul>
+            </li>
+            <li><strong>Check for the Cluster:</strong> Predict the probability of each record belonging to
+                a particular cluster and separate records based on probability. For each unique cluster, we
+                will load the respective model and predict the probability of records belonging to that
+                cluster.</li>
+            <li><strong>Predict the Probabilities:</strong> Predict the probability of each record belonging
+                to that particular cluster using the loaded model.</li>
+            <li><strong>Create a Predictions Folder:</strong> Create a folder for each cluster inside the
+                "Predictions_Folder" folder.</li>
+            <li><strong>Save the Predictions:</strong> Save the predictions for each cluster in the
+                respective folder as a CSV file. The name of the file will be "Cluster_<cluster_number>
+                    .csv".</li>
+        </ol>
+        This outlines the steps involved in the training and prediction process for the phishing website
+        detection system.
+    </section>
+    <section>
+        <h2>About Phishing</h2>
+        <p>Phishing is a fraudulent attempt to obtain sensitive information such as usernames, passwords, and credit
+            card details by disguising as a trustworthy entity in electronic communication. Phishing attacks often occur
+            through email, instant messaging, or malicious websites.</p>
+        <p>Phishing can have serious consequences, including:</p>
+        <ul>
+            <li>Financial loss: Phishing attacks can lead to unauthorized access to bank accounts, credit card fraud,
+                and financial theft.</li>
+            <li>Identity theft: Phishers may use stolen information to impersonate individuals, leading to identity
+                theft and misuse of personal data.</li>
+            <li>Data breaches: Phishing attacks can result in the compromise of sensitive data, affecting individuals
+                and organizations alike.</li>
+            <li>Malware infections: Phishing emails and websites often distribute malware, such as viruses or
+                ransomware, which can cause significant damage to systems.</li>
+        </ul>
+        <p>To avoid falling victim to phishing attacks, it is essential to:</p>
+        <ul>
+            <li>Be cautious with emails: Verify the sender's identity, avoid clicking on suspicious links, and refrain
+                from providing personal information via email.</li>
+            <li>Double-check URLs: Before entering sensitive information on a website, ensure that the URL is legitimate
+                and uses secure protocols (e.g., HTTPS).</li>
+            <li>Use strong, unique passwords: Create complex passwords and avoid reusing them across multiple accounts.
+            </li>
+            <li>Enable two-factor authentication (2FA): Implement 2FA whenever possible to add an extra layer of
+                security to your accounts.</li>
+            <li>Keep software up to date: Regularly update your operating system, web browser, and antivirus software to
+                patch security vulnerabilities.</li>
+        </ul>
+    </section>
+
+
+
+
+    <footer>
+        <div class="footer-details">
+            <p>This website provides a phishing classification service to help identify potential phishing attempts. It
+                utilizes advanced algorithms and machine learning techniques to analyze suspicious URLs and provide a
+                classification result.</p>
+            <p>Contact us for more information:</p>
+            <p>Email: sachin.mca21@cs.du.ac.in</p>
+            <p>Phone: +91 9690740098</p>
+        </div>
+    </footer>
+</body>
+
+</html>
