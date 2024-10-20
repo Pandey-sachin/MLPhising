@@ -23,7 +23,7 @@ MarkupSafe==2.1.5
 matplotlib==3.7.5           # Latest stable release
 numpy==1.24.4               # Latest stable release
 packaging==24.1             # This is a valid version
-pandas==2.1.1               # Latest stable release
+pandas==2.0.3               # Latest stable release
 pillow==10.0.1              # Latest stable release
 psutil==5.9.5               # Latest stable release
 pyparsing==3.1.1            # Latest stable release
